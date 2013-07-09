@@ -1,0 +1,24 @@
+#!/usr/bin/make -f
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+export CFLAGS := $(shell dpkg-buildflags --get CFLAGS) $(shell dpkg-buildflags --get CPPFLAGS)
+export CXXFLAGS := $(shell dpkg-buildflags --get CXXFLAGS) $(shell dpkg-buildflags --get CPPFLAGS)
+export LDFLAGS := $(shell dpkg-buildflags --get LDFLAGS) -Wl,--as-needed
+
+%:
+	dh $@ --list-missing --parallel --with pkgkde_symbolshelper --dbg-package=qtfeedback5-dbg
+
+override_dh_auto_configure:
+	qmake
+
+override_dh_auto_install:
+	dh_auto_install
+	# Fix wrong path in pkgconfig files
+	find $(CURDIR)/debian/tmp/usr/lib/*/pkgconfig -type f -name '*.pc' \
+    -exec sed -i -e 's/$(DEB_HOST_MULTIARCH)\/$(DEB_HOST_MULTIARCH)/$(DEB_HOST_MULTIARCH)/g' {} \;
+
+override_dh_builddeb:
+	dh_builddeb -- -Zxz
+
