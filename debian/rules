@@ -19,6 +19,9 @@ override_dh_auto_install:
 	find $(CURDIR)/debian/tmp/usr/lib/$(DEB_HOST_MULTIARCH)/pkgconfig -type f -name '*.pc' \
 	-exec sed -i -e 's/$(DEB_HOST_MULTIARCH)\/$(DEB_HOST_MULTIARCH)/$(DEB_HOST_MULTIARCH)/g' {} \;
 	
+	# Remove private stuff
+	rm -rf debian/tmp/usr/include/qt5/QtFeedback/$(DEB_HOST_MULTIARCH)/QtFeedback/private/
+	
 	# Remove libtool-like files
 	rm -f debian/tmp/usr/lib/$(DEB_HOST_MULTIARCH)/*.la
 	

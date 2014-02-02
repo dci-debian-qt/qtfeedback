@@ -63,25 +63,6 @@ Description: Qt 5 Feedback development files
  snapshot of an ongoing development. The package is very likely to
  change in a binary incompatible way, and no guarantees are given.
 
-Package: qtfeedback5-private-dev
-Architecture: any
-Section: libdevel
-Depends: qtfeedback5-dev (= ${binary:Version}),
-         ${misc:Depends},
-         ${shlibs:Depends}
-Description: Qt 5 Feedback private development files
- Qt is a cross-platform C++ application framework. Qt's primary feature
- is its rich set of widgets that provide standard GUI functionality.
- .
- This package contains the private header development files for building some
- Qt 5 applications using feedback private headers.
- .
- Use at your own risk.
- .
- WARNING: This module is not an official part of Qt 5, but instead a git
- snapshot of an ongoing development. The package is very likely to
- change in a binary incompatible way, and no guarantees are given.
-
 Package: qtfeedback5-dbg
 Priority: extra
 Architecture: any
