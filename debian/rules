@@ -22,6 +22,7 @@ override_dh_auto_install:
 	
 	# Remove private stuff
 	rm -rf debian/tmp/usr/include/qt5/QtFeedback/*/QtFeedback/private/
+	rm -fv $(CURDIR)/debian/tmp/usr/lib/*/qt5/mkspecs/modules/qt_lib_*_private.pri
 	
 	# Remove libtool-like files
 	rm -f debian/tmp/usr/lib/$(DEB_HOST_MULTIARCH)/*.la
