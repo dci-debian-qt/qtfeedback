@@ -3,5 +3,7 @@ qtfeedback-opensource-src (5.0~git20130529-1) UNRELEASED; urgency=low
   * Initial release. (Closes: #697509)
   * debian/patches/revert_module_version.patch:
     - Keep module version non-zero
+  * debian/patches/disable_audio_playback_test.patch:
+    - Skip audio playback test which may be a problem on builders
 
  -- Timo Jyrinki <timo@debian.org>  Wed, 12 Jun 2013 15:35:24 +0300
