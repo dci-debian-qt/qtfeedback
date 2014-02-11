@@ -10,7 +10,9 @@ Build-Depends: debhelper (>= 9),
                qtbase5-dev,
                qtdeclarative5-dev,
                qtdeclarative5-qtquick2-plugin,
-               qtmultimedia5-dev
+               qtmultimedia5-dev,
+               xauth,
+               xvfb,
 Standards-Version: 3.9.4
 Homepage: http://qt-project.org/
 Vcs-Git: git://anonscm.debian.org/pkg-kde/qt/qtfeedback.git
