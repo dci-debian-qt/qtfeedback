@@ -37,18 +37,6 @@ Description: Qt Feedback module
  snapshot of an ongoing development. The package is very likely to
  change in a binary incompatible way, and no guarantees are given.
 
-Package: qtdeclarative5-qtfeedback-plugin
-Architecture: any
-Multi-Arch: same
-Section: oldlibs
-Depends: qml-module-qtfeedback, ${misc:Depends}
-Description: transitional dummy package for Qt 5 Service Framework QML module
- Qt is a cross-platform C++ application framework. Qt's primary feature
- is its rich set of widgets that provide standard GUI functionality.
- .
- This is a transitional dummy package for qml-module-qtfeedback
- which can be safely removed.
-
 Package: qml-module-qtfeedback
 Architecture: any
 Multi-Arch: same
