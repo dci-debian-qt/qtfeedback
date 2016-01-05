@@ -5,15 +5,19 @@ Maintainer: Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>
 Uploaders: Timo Jyrinki <timo@debian.org>
 Build-Depends: debhelper (>= 9),
                libpulse-dev,
+               libqt5xcbqpa5,
                pkg-kde-tools,
-               qt5-default,
-               qtbase5-dev (>= 5.2.1+dfsg~),
-               qtdeclarative5-dev (>= 5.2.1~),
-               qtdeclarative5-qtquick2-plugin (>= 5.2.1~),
-               qtmultimedia5-dev (>= 5.2.1~),
+               qtbase5-dev (>= 5.5.1~),
+               qtdeclarative5-dev (>= 5.5.1~),
+               qml-module-qtquick2 (>= 5.5.1~),
+               qtmultimedia5-dev (>= 5.5.1~),
                xauth,
                xvfb,
-Standards-Version: 3.9.4
+Build-Depends-Indep: libqt5sql5-sqlite (>= 5.5.1~),
+                     qtbase5-doc-html (>= 5.5.1~),
+                     qtdeclarative5-doc-html (>= 5.5.1~),
+                     qttools5-dev-tools (>= 5.5.1~)
+Standards-Version: 3.9.6
 Homepage: http://qt-project.org/
 Vcs-Git: git://anonscm.debian.org/pkg-kde/qt/qtfeedback.git
 Vcs-Browser: http://anonscm.debian.org/gitweb/?p=pkg-kde/qt/qtfeedback.git;a=summary
@@ -36,13 +40,27 @@ Description: Qt Feedback module
 Package: qtdeclarative5-qtfeedback-plugin
 Architecture: any
 Multi-Arch: same
-Pre-Depends: ${misc:Pre-Depends}
-Depends: libqt5feedback5, ${misc:Depends}, ${shlibs:Depends}
-Description: Qt Feedback module - QML plugin
+Section: oldlibs
+Depends: qml-module-qtfeedback, ${misc:Depends}
+Description: transitional dummy package for Qt 5 Service Framework QML module
  Qt is a cross-platform C++ application framework. Qt's primary feature
  is its rich set of widgets that provide standard GUI functionality.
  .
- This package contains the Qt Feedback QML plugin for Qt Declarative.
+ This is a transitional dummy package for qml-module-qtfeedback
+ which can be safely removed.
+
+Package: qml-module-qtfeedback
+Architecture: any
+Multi-Arch: same
+Pre-Depends: ${misc:Pre-Depends}
+Depends: libqt5feedback5, ${misc:Depends}, ${shlibs:Depends}
+Breaks: qtdeclarative5-qtfeedback-plugin (<< 5.0~git20130529-0ubuntu6~)
+Replaces: qtdeclarative5-qtfeedback-plugin (<< 5.0~git20130529-0ubuntu6~)
+Description: Qt 5 Feedback QML module
+ Qt is a cross-platform C++ application framework. Qt's primary feature
+ is its rich set of widgets that provide standard GUI functionality.
+ .
+ This package contains the Qt Feedback QML module for Qt Declarative.
  .
  WARNING: This module is not an official part of Qt 5, but instead a git
  snapshot of an ongoing development. The package is very likely to
@@ -60,6 +78,38 @@ Description: Qt 5 Feedback development files
  .
  This package contains the header development files used for building Qt 5
  applications using Qt Feedback library.
+ .
+ WARNING: This module is not an official part of Qt 5, but instead a git
+ snapshot of an ongoing development. The package is very likely to
+ change in a binary incompatible way, and no guarantees are given.
+
+Package: qtfeedback5-doc
+Priority: extra
+Architecture: all
+Section: doc
+Depends: ${misc:Depends}
+Description: Qt 5 Feedback documentation
+ Qt is a cross-platform C++ application framework. Qt's primary feature
+ is its rich set of widgets that provide standard GUI functionality.
+ .
+ This package contains the documentation for the Qt 5 Feedback
+ module.
+ .
+ WARNING: This module is not an official part of Qt 5, but instead a git
+ snapshot of an ongoing development. The package is very likely to
+ change in a binary incompatible way, and no guarantees are given.
+
+Package: qtfeedback5-doc-html
+Priority: extra
+Architecture: all
+Section: doc
+Depends: ${misc:Depends}
+Description: Qt 5 Feedback HTML documentation
+ Qt is a cross-platform C++ application framework. Qt's primary feature
+ is its rich set of widgets that provide standard GUI functionality.
+ .
+ This package contains the HTML documentation for the Qt 5 Feedback
+ module.
  .
  WARNING: This module is not an official part of Qt 5, but instead a git
  snapshot of an ongoing development. The package is very likely to

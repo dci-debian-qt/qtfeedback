@@ -6,6 +6,8 @@
 export CFLAGS := $(shell dpkg-buildflags --get CFLAGS) $(shell dpkg-buildflags --get CPPFLAGS)
 export CXXFLAGS := $(shell dpkg-buildflags --get CXXFLAGS) $(shell dpkg-buildflags --get CPPFLAGS)
 export LDFLAGS := $(shell dpkg-buildflags --get LDFLAGS) -Wl,--as-needed
+export DEB_HOST_MULTIARCH := $(shell dpkg-architecture -qDEB_HOST_MULTIARCH)
+export QT_SELECT := qt5
 
 %:
 	dh $@ --list-missing --parallel --with pkgkde_symbolshelper --dbg-package=qtfeedback5-dbg
@@ -14,14 +16,18 @@ override_dh_auto_configure:
 	mkdir .git
 	qmake
 
+override_dh_auto_build-indep:
+	dh_auto_build -Smakefile -- docs
+
 override_dh_auto_install:
 	dh_auto_install
+	$(MAKE) INSTALL_ROOT=$(CURDIR)/debian/tmp install_docs
 	# Fix wrong path in pkgconfig files
 	find $(CURDIR)/debian/tmp/usr/lib/$(DEB_HOST_MULTIARCH)/pkgconfig -type f -name '*.pc' \
 	-exec sed -i -e 's/$(DEB_HOST_MULTIARCH)\/$(DEB_HOST_MULTIARCH)/$(DEB_HOST_MULTIARCH)/g' {} \;
 	
 	# Remove private stuff
-	rm -rfv debian/tmp/usr/include/qt5/QtFeedback/*/QtFeedback/private/
+	rm -rfv debian/tmp/usr/include/*/qt5/QtFeedback/*/QtFeedback/private/
 	rm -fv $(CURDIR)/debian/tmp/usr/lib/*/qt5/mkspecs/modules/qt_lib_*_private.pri
 	
 	# Remove libtool-like files

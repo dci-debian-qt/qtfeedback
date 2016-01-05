@@ -1,0 +1,23 @@
+diff -urN old/src/feedback/feedback.pro new/src/feedback/feedback.pro
+--- old/src/feedback/feedback.pro	2013-05-29 16:40:33.000000000 +0000
++++ new/src/feedback/feedback.pro	2014-05-12 05:46:07.647168035 +0000
+@@ -1,9 +1,10 @@
+ TARGET = QtFeedback
+ QT = core
+ 
+-QMAKE_DOCS = $$PWD/../../doc/qtfeedback.qdocconf
++MODULE_PLUGIN_TYPES = \
++    feedback
+ 
+-load(qt_module)
++QMAKE_DOCS = $$PWD/../../doc/qtfeedback.qdocconf
+ 
+ PUBLIC_HEADERS += qfeedbackglobal.h \
+                   qfeedbackactuator.h \
+@@ -19,3 +20,6 @@
+ SOURCES += qfeedbackactuator.cpp \
+            qfeedbackeffect.cpp \
+            qfeedbackplugin.cpp
++
++load(qt_module)
++
